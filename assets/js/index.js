@@ -75,5 +75,4 @@ const loadMore = async () => {
           catagoryItemsContainer.appendChild(catagoryItems);
     });
     }
-
      loadMore();
