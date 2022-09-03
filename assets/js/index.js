@@ -17,6 +17,7 @@ const loadMore = async () => {
         catagoriesSection.innerText = '';
         // start loader
         toogleSpiner(true);
+        
         catagories.forEach(catagory => {
         //  console.log(catagory);
         const li = document.createElement('li');
@@ -44,9 +45,12 @@ const loadMore = async () => {
     const displayCatagoryItems = catagories => {
       const catagoryItemsContainer = document.getElementById('catagory-items');
          catagoryItemsContainer.innerText = '';
+       
         // display number of catagory
          const numberOfCatagory = document.getElementById('number-of-catagory')
-       numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`
+       numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`;
+        //  sort array
+        // newsData.sort((a,b) => b.total_view - a.toatl_view);
         catagories.forEach(catagory => {
             //  console.log(catagory)
           const catagoryItems = document.createElement('div')
