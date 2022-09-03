@@ -44,10 +44,12 @@ a{
 .menu{
     color: black;
     display: inline-block;
+    cursor: pointer;
 }
 .menu:hover{
     color: #5D5FEF;
     background-color: #d3d4fa;
+    cursor: pointer;
 }
 /* catagories css */
 main{

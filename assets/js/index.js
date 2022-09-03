@@ -20,7 +20,7 @@ const loadMore = async () => {
         const li = document.createElement('li');
         li.classList.add('nav-item')
         li.innerHTML = `
-        <a href="" class="px-4 nav-link fw-semi-bold menu" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}<a>
+        <a class="px-4 nav-link fw-semi-bold menu" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}<a>
         `;
         catagoriesSection.appendChild(li);
         
@@ -47,13 +47,13 @@ const loadMore = async () => {
        
         // display number of catagory
          const numberOfCatagory = document.getElementById('number-of-catagory')
-       numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`;
+          numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`;
         
        //  sort array
          catagories.sort(function(a,b) {return b.total_view - a.total_view});
 
         catagories.forEach(catagory => {
-            //  console.log(catagory)
+              console.log(catagory)
           const catagoryItems = document.createElement('div')
           catagoryItems.classList.add("row", "mb-4", "bg-white", "rounded","mx-3")
           catagoryItems.innerHTML = `
