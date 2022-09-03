@@ -16,7 +16,7 @@ const loadMore = async () => {
         const catagoriesSection = document.getElementById('catagories')
         catagoriesSection.innerText = '';
         // start loader
-        toogleSpiner(true);
+       
         
         catagories.forEach(catagory => {
         //  console.log(catagory);
@@ -31,10 +31,13 @@ const loadMore = async () => {
     }
     const catagoryItems = async (id) => {
         try{
+           // start loader
+          toogleSpiner(true);
               const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
               const res = await fetch(url);
               const data = await res.json();
               displayCatagoryItems(data.data);
+             
           }
           catch(error){
                   console.log(error);
@@ -49,8 +52,10 @@ const loadMore = async () => {
         // display number of catagory
          const numberOfCatagory = document.getElementById('number-of-catagory')
        numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`;
-        //  sort array
-        // newsData.sort((a,b) => b.total_view - a.toatl_view);
+        
+       //  sort array
+         catagories.sort(function(a,b) {return b.total_view - a.total_view});
+         console.log(catagories[0].toatl_view);
         catagories.forEach(catagory => {
             //  console.log(catagory)
           const catagoryItems = document.createElement('div')
@@ -88,7 +93,7 @@ const loadMore = async () => {
           catagoryItemsContainer.appendChild(catagoryItems);
     });
     // stop loader
-    toogleSpiner(false);
+     toogleSpiner(false);
     }
     // spinner
     const toogleSpiner = isLoading =>{
