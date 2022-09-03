@@ -76,7 +76,7 @@ const loadMore = async () => {
                       <li><i class="fa-solid fa-star-half-stroke"></i></li>
                     </ul>
                   </div>
-                  <button class="details mt-3 border border-0 bg-white" onclick="catagoryDetails('${catagory._id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
+                  <button class="details mt-3 border border-0 bg-white" onclick="catagoryDetails('${catagory.category_id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
          </div>
        </div>
@@ -97,9 +97,9 @@ const loadMore = async () => {
       }
     }
     // catagory details
-    const catagoryData = async (news_id) => {
+    const catagoryData = async (news) => {
       try{
-        const url = ` https://openapi.programming-hero.com/api/news/${news_id}`;
+        const url = ` https://openapi.programming-hero.com/api/news/${news}`;
       const res = await fetch(url);
       const data = res.json();
       catagoryDetails(data.data)
