@@ -9,19 +9,23 @@ const loadMore = async () => {
                     console.log(error);
         }
     }
+   
+    // display catagories
     const displayNews = catagories => {
+     
         const catagoriesSection = document.getElementById('catagories')
         catagoriesSection.innerText = '';
+        // start loader
+        toogleSpiner(true);
         catagories.forEach(catagory => {
         //  console.log(catagory);
         const li = document.createElement('li');
         li.classList.add('catagory-list')
         li.innerHTML = `
-       
-        <h6 class="catagories-area" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}</h6>
-        
+        <h6 class="catagories-area" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}</h6>
         `;
         catagoriesSection.appendChild(li);
+        
         });
     }
     const catagoryItems = async (id) => {
@@ -35,11 +39,16 @@ const loadMore = async () => {
                   console.log(error);
       }
     }
+    
+    // display catagory items
     const displayCatagoryItems = catagories => {
       const catagoryItemsContainer = document.getElementById('catagory-items');
          catagoryItemsContainer.innerText = '';
+        // display number of catagory
+         const numberOfCatagory = document.getElementById('number-of-catagory')
+       numberOfCatagory.innerHTML = `<h4>${catagories.length} items found for this catagory</h4>`
         catagories.forEach(catagory => {
-             console.log(catagory)
+            //  console.log(catagory)
           const catagoryItems = document.createElement('div')
           catagoryItems.classList.add("row", "mb-4", "bg-white", "rounded")
           catagoryItems.innerHTML = `
@@ -58,7 +67,7 @@ const loadMore = async () => {
                 <div class="viwer mt-3">
                   <i class="fa-regular fa-eye px-2"><span class="fw-bold"> ${catagory.total_view ? catagory.total_view : 'N/A'}</span></i>
                 </div>
-                <div class="ratings mt-3">
+                <div class="ratings mt-3" >
                     <ul>
                       <li><i class="fa-regular fa-star"></i></li>
                       <li><i class="fa-regular fa-star"></i></li>
@@ -67,12 +76,47 @@ const loadMore = async () => {
                       <li><i class="fa-solid fa-star-half-stroke"></i></li>
                     </ul>
                   </div>
-                  <a class="details mt-3" onclick="catagoryDetails()"><i class="fa-solid fa-arrow-right"></i><a>
+                  <button class="details mt-3 border border-0 bg-white" onclick="catagoryDetails('${catagory._id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
          </div>
        </div>
           `;
           catagoryItemsContainer.appendChild(catagoryItems);
     });
+    // stop loader
+    toogleSpiner(false);
     }
-     loadMore();
+    // spinner
+    const toogleSpiner = isLoading =>{
+      const spinner = document.getElementById('spinner')
+      if(isLoading){
+        spinner.classList.remove('d-none')
+      }
+      else{
+        spinner.classList.add('d-none')
+      }
+    }
+    // catagory details
+    const catagoryData = async (news_id) => {
+      try{
+        const url = ` https://openapi.programming-hero.com/api/news/${news_id}`;
+      const res = await fetch(url);
+      const data = res.json();
+      catagoryDetails(data.data)
+      }
+      catch(error){
+        console.log(error)
+      }
+    }
+    const catagoryDetails = (catagory) => {
+      console.log(catagory)
+      const showModal = document.getElementById('modalLabel')
+      showModal.innerText = `${catagory.title}`;
+      const modalDetails = document.getElementById('modal-details')
+      modalDetails.innerHTML = `
+      <p>${catagory.details}</p>
+      `;
+    }
+    catagoryData();
+     loadMore('');
+     catagoryItems(01);

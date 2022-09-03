@@ -67,8 +67,11 @@ a{
 main{
     min-height: 70vh;
 }
-.catagories-area {
-	color:
+
+.field{
+    padding: 10px 15px;
+    background-color: #fff;
+    width: 100%;
 }
 .catagories-area:hover{
     cursor: pointer;
@@ -105,6 +108,3 @@ main{
     cursor: pointer;
 }
 /* footer */
-footer {
-
-}
