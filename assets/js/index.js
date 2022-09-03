@@ -124,6 +124,12 @@ const loadMore = async () => {
       const modalDetails = document.getElementById('modal-details')
       modalDetails.innerHTML = `
       <p>${catagory.details}</p>
+      <div class="catagory-footer mt-4">
+                <ul class="author-area">
+                <li><img src="${catagory.author.img}"></li>
+                <li><h6>${catagory.author.name ? catagory.author.name : 'N/A'}<span class="text-secondary">${catagory.author.published_date ? catagory.author.published_date : 'N/A'}</span></h6></li>
+                </ul>
+          </div>      
       `;
     }
     
