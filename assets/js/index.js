@@ -50,7 +50,7 @@ const loadMore = async () => {
         catagories.forEach(catagory => {
             //  console.log(catagory)
           const catagoryItems = document.createElement('div')
-          catagoryItems.classList.add("row", "mb-4", "bg-white", "rounded")
+          catagoryItems.classList.add("row", "mb-4", "bg-white", "rounded","mx-3")
           catagoryItems.innerHTML = `
          <div class="col-md-4">
          <img src="${catagory.image_url}" class="img-fluid rounded p-3" alt="...">
@@ -76,7 +76,7 @@ const loadMore = async () => {
                       <li><i class="fa-solid fa-star-half-stroke"></i></li>
                     </ul>
                   </div>
-                  <button class="details mt-3 border border-0 bg-white" onclick="catagoryDetails('${catagory.category_id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
+                  <button class="details  border border-0 bg-white" onclick="catagoryDetails('${catagory._id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
          </div>
        </div>
@@ -97,18 +97,18 @@ const loadMore = async () => {
       }
     }
     // catagory details
-    const catagoryData = async (news) => {
+    const catagoryDetails = async (id) => {
       try{
-        const url = ` https://openapi.programming-hero.com/api/news/${news}`;
+        const url = `https://openapi.programming-hero.com/api/news/${id}`;
       const res = await fetch(url);
-      const data = res.json();
-      catagoryDetails(data.data)
+      const data = await res.json();
+      displayCatagoryDetails(data.data[0])
       }
       catch(error){
         console.log(error)
       }
     }
-    const catagoryDetails = (catagory) => {
+    const displayCatagoryDetails = (catagory) => {
       console.log(catagory)
       const showModal = document.getElementById('modalLabel')
       showModal.innerText = `${catagory.title}`;
@@ -117,6 +117,6 @@ const loadMore = async () => {
       <p>${catagory.details}</p>
       `;
     }
-    catagoryData();
+    
      loadMore('');
      catagoryItems(01);
