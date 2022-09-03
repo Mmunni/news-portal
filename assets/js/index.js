@@ -20,7 +20,7 @@ const loadMore = async () => {
         const li = document.createElement('li');
         li.classList.add('nav-item')
         li.innerHTML = `
-        <a class="px-4 nav-link fw-semi-bold menu" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}<a>
+        <h5 class="px-4 nav-link fw-semi-bold menu" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}</h5>
         `;
         catagoriesSection.appendChild(li);
         
