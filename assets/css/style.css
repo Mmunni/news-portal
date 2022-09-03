@@ -32,23 +32,6 @@ a{
     flex-basis: 10%;
 }
 
-.nav-link{
-    color: #5D5FEF;
-    position: relative;
-    
-}
-.nav-link:hover.nav-link::before{
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 50%;
-    background-color: #5D5FEF;
-    color: #5D5FEF;
-    left: 50%;
-    bottom: 20%;
-    transform: translate(-50%);
-}
-
 .header-image {
     flex-basis: 3%;
 }
@@ -58,10 +41,13 @@ a{
     border-radius: 50%;
     margin-left: 40px;
 }
-.catagory-area{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+.menu{
+    color: black;
+    display: inline-block;
+}
+.menu:hover{
+    color: #5D5FEF;
+    background-color: #d3d4fa;
 }
 /* catagories css */
 main{
@@ -107,4 +93,4 @@ main{
     color: #5D5FEF;
     cursor: pointer;
 }
-/* footer */
+

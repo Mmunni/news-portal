@@ -15,15 +15,12 @@ const loadMore = async () => {
      
         const catagoriesSection = document.getElementById('catagories')
         catagoriesSection.innerText = '';
-        // start loader
-       
-        
         catagories.forEach(catagory => {
         //  console.log(catagory);
         const li = document.createElement('li');
-        li.classList.add('catagory-list')
+        li.classList.add('nav-item')
         li.innerHTML = `
-        <h6 class="catagories-area" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}</h6>
+        <a href="" class="px-4 nav-link fw-semi-bold menu" id="displayCatagory" onclick="catagoryItems(${catagory.category_id})">${catagory.category_name}<a>
         `;
         catagoriesSection.appendChild(li);
         
@@ -37,7 +34,6 @@ const loadMore = async () => {
               const res = await fetch(url);
               const data = await res.json();
               displayCatagoryItems(data.data);
-             
           }
           catch(error){
                   console.log(error);
@@ -55,7 +51,7 @@ const loadMore = async () => {
         
        //  sort array
          catagories.sort(function(a,b) {return b.total_view - a.total_view});
-         console.log(catagories[0].toatl_view);
+
         catagories.forEach(catagory => {
             //  console.log(catagory)
           const catagoryItems = document.createElement('div')
@@ -78,11 +74,11 @@ const loadMore = async () => {
                 </div>
                 <div class="ratings mt-3" >
                     <ul>
-                      <li><i class="fa-regular fa-star"></i></li>
-                      <li><i class="fa-regular fa-star"></i></li>
-                      <li><i class="fa-regular fa-star"></i></li>
-                      <li><i class="fa-regular fa-star"></i></li>
-                      <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                      <li><i class="fa-regular fa-star d-none d-sm-block"></i></li>
+                      <li><i class="fa-regular fa-star d-none d-sm-block"></i></li>
+                      <li><i class="fa-regular fa-star d-none d-sm-block"></i></li>
+                      <li><i class="fa-regular fa-star d-none d-sm-block"></i></li>
+                      <li><i class="fa-solid fa-star-half-stroke	d-none d-sm-block"></i></li>
                     </ul>
                   </div>
                   <button class="details  border border-0 bg-white" onclick="catagoryDetails('${catagory._id}')" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-arrow-right"></i></button>
@@ -123,6 +119,7 @@ const loadMore = async () => {
       showModal.innerText = `${catagory.title}`;
       const modalDetails = document.getElementById('modal-details')
       modalDetails.innerHTML = `
+      <img src="${catagory.image_url}" class="img-fluid rounded p-3" alt="...">
       <p>${catagory.details}</p>
       <div class="catagory-footer mt-4">
                 <ul class="author-area">
